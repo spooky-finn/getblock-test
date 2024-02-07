@@ -40,9 +40,6 @@ func (b *ByteCodeAnalyser) contractMetodSignature(method string, params []interf
 }
 
 func (b *ByteCodeAnalyser) SatisfiesERC20(bytecode string) error {
-	name := b.contractMetodSignature("name", []interface{}{})
-	symbol := b.contractMetodSignature("symbol", []interface{}{})
-	decimals := b.contractMetodSignature("decimals", []interface{}{})
 	totalSupply := b.contractMetodSignature("totalSupply", []interface{}{})
 	balanceOf := b.contractMetodSignature("balanceOf", []interface{}{"address"})
 	transfer := b.contractMetodSignature("transfer", []interface{}{"address", "uint256"})
@@ -54,9 +51,6 @@ func (b *ByteCodeAnalyser) SatisfiesERC20(bytecode string) error {
 	approvalEvent := b.contractMetodSignature("Approval", []interface{}{"address", "address", "uint256"})
 
 	for i, sig := range map[string]string{
-		"name()":                                name,
-		"symbol()":                              symbol,
-		"decimals()":                            decimals,
 		"totalSupply()":                         totalSupply,
 		"balanceOf(address)":                    balanceOf,
 		"transfer(address,uint256)":             transfer,
